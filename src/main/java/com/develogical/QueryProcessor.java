@@ -11,8 +11,14 @@ public class QueryProcessor {
         if (query.toLowerCase().contains("name")) {
             return "sl-ml";
         }
-        if (query.toLowerCase().contains("which of the following numbers is the largest: 2023, 2086, 20997, 20605")) {
-            return "20997";
+        if (query.toLowerCase().contains("which of the following numbers is the largest")) {
+            String[] front = query.split(":");
+            String[] numbers = query.split(",");
+            int max = 0;
+            for (int i = 0; i < numbers.length; i++) {
+                max = Integer.max(max, Integer.parseInt(numbers[i]));
+            }
+            return Integer.toString(max);
         }
         return "";
     }
